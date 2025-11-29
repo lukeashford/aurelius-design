@@ -1,0 +1,60 @@
+{
+  "name": "@lukeashford/aurelius-design",
+  "version": "1.0.0",
+  "description": "Design system for Aurelius applications — A cohesive visual language for creative technologists",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./tailwind.preset": {
+      "types": "./dist/tailwind.preset.d.ts",
+      "import": "./dist/tailwind.preset.mjs",
+      "require": "./dist/tailwind.preset.js"
+    },
+    "./styles/base.css": "./src/styles/base.css",
+    "./styles/variables.css": "./src/styles/variables.css"
+  },
+  "files": [
+    "dist",
+    "src/styles"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
+    "tailwindcss": "^3.4.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukeashford/aurelius-design.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "keywords": [
+    "design-system",
+    "tailwind",
+    "react",
+    "design-tokens",
+    "ui",
+    "aurelius"
+  ],
+  "author": "Your Name",
+  "license": "UNLICENSED"
+}
