@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Card, colors, typography,} from '@lukeashford/aurelius-design'
+import {colors, typography,} from '@lukeashford/aurelius-design'
 
 import ColorsSection from './sections/ColorsSection'
 import TypographySection from './sections/TypographySection'
@@ -12,9 +12,13 @@ import TooltipSection from './sections/TooltipSection'
 import FormsSection from './sections/FormsSection'
 import FeedbackSection from './sections/FeedbackSection'
 import ModalSection from './sections/ModalSection'
+import DirectorNote from './sections/DirectorNote'
+import {Footer} from './components/Footer'
+import {LegalNotice} from './components/LegalNotice'
 
 const nav = [
   {id: 'overview', label: 'Overview'},
+  {id: 'director-note', label: "Director's Note"},
   {id: 'colors', label: 'Colors'},
   {id: 'typography', label: 'Typography'},
   {id: 'buttons', label: 'Buttons'},
@@ -30,6 +34,15 @@ const nav = [
 
 export default function App() {
   const [active, setActive] = useState('overview')
+  const [view, setView] = useState(window.location.hash === '#legal' ? 'legal' : 'main')
+
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      setView(window.location.hash === '#legal' ? 'legal' : 'main')
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
 
   // IntersectionObserver to set active nav link
   React.useEffect(() => {
@@ -53,13 +66,22 @@ export default function App() {
     return () => observer.disconnect()
   }, [])
 
+  if (view === 'legal') {
+    return <LegalNotice/>
+  }
+
   return (
       <div className="min-h-screen bg-obsidian text-white">
         <aside
             className="fixed left-0 top-0 h-full w-60 hidden lg:block border-r border-ash/40 bg-charcoal/50 backdrop-blur-sm">
           <div className="p-4 border-b border-ash/40">
-            <div className="text-sm text-silver">Aurelius Design</div>
-            <h2 className="text-xl font-semibold">Kitchen Sink</h2>
+            <h2 className="text-xl font-semibold text-white">Aurelius Design</h2>
+            <a href="https://github.com/lukeashford/aurelius-design"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="text-xs text-gold hover:text-goldBright transition-colors mt-2 inline-block">
+              View Source on GitHub →
+            </a>
           </div>
           <nav className="p-3 space-y-1">
             {nav.map(n => (
@@ -74,13 +96,15 @@ export default function App() {
 
         <main className="max-w-screen-xl mx-auto p-6 lg:pl-64 space-y-16">
           <section id="overview" className="section">
-            <Card variant="featured" className="p-8">
-              <h1 className="text-3xl sm:text-4xl font-semibold">Aurelius Design — Kitchen Sink</h1>
-              <p className="mt-3 text-silver max-w-3xl">
-                A cohesive visual language for creative technologists — combining technical
-                sophistication with artistic sensibility.
-              </p>
-            </Card>
+            <h1 className="text-3xl sm:text-4xl font-semibold">Aurelius Design</h1>
+            <p className="mt-3 text-silver max-w-3xl">
+              A cohesive visual language for creative technologists — combining technical
+              sophistication with artistic sensibility.
+            </p>
+          </section>
+
+          <section id="director-note" className="section">
+            <DirectorNote/>
           </section>
 
           <section id="colors" className="section">
@@ -126,6 +150,8 @@ export default function App() {
           <section id="modal" className="section">
             <ModalSection/>
           </section>
+
+          <Footer/>
         </main>
       </div>
   )
