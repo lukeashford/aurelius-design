@@ -91,7 +91,6 @@ export default function App() {
                 </a>
             ))}
           </nav>
-          <div className="p-3 text-xs text-silver/70">Live updates via tsup --watch + Vite</div>
         </aside>
 
         <main className="max-w-screen-xl mx-auto p-6 lg:pl-64 space-y-16">
