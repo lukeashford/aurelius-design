@@ -1,9 +1,40 @@
-import type { Config } from 'tailwindcss'
-import { colors } from './tokens/colors'
-import { typography } from './tokens/typography'
-import { spacing } from './tokens/spacing'
+import type {Config} from 'tailwindcss'
+import {colors, spacing, typography} from './tokens'
 
 const preset: Partial<Config> = {
+  // Safelist color utilities used dynamically in the demo so Tailwind doesn't purge them
+  safelist: [
+    // Black spectrum
+    'bg-void',
+    'bg-obsidian',
+    'bg-charcoal',
+    'bg-graphite',
+    'bg-slate',
+    'bg-ash',
+
+    // Gold spectrum
+    'bg-gold',
+    'bg-gold-light',
+    'bg-gold-bright',
+    'bg-gold-muted',
+    'bg-gold-pale',
+
+    // Neutrals
+    'bg-white',
+    'bg-silver',
+    'bg-zinc',
+    'bg-dim',
+
+    // Semantic
+    'bg-success',
+    'bg-success-muted',
+    'bg-error',
+    'bg-error-muted',
+    'bg-warning',
+    'bg-warning-muted',
+    'bg-info',
+    'bg-info-muted',
+  ],
   theme: {
     extend: {
       colors: {
@@ -26,6 +57,7 @@ const preset: Partial<Config> = {
         },
 
         // Neutrals
+        white: colors.white,
         silver: colors.silver,
         zinc: colors.zinc,
         dim: colors.dim,
@@ -106,24 +138,24 @@ const preset: Partial<Config> = {
 
       keyframes: {
         'fade-in': {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          '0%': {opacity: '0'},
+          '100%': {opacity: '1'},
         },
         'fade-out': {
-          '0%': { opacity: '1' },
-          '100%': { opacity: '0' },
+          '0%': {opacity: '1'},
+          '100%': {opacity: '0'},
         },
         'slide-in-right': {
-          '0%': { transform: 'translateX(100%)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
+          '0%': {transform: 'translateX(100%)', opacity: '0'},
+          '100%': {transform: 'translateX(0)', opacity: '1'},
         },
         'slide-out-right': {
-          '0%': { transform: 'translateX(0)', opacity: '1' },
-          '100%': { transform: 'translateX(100%)', opacity: '0' },
+          '0%': {transform: 'translateX(0)', opacity: '1'},
+          '100%': {transform: 'translateX(100%)', opacity: '0'},
         },
         'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(201, 162, 39, 0.3)' },
-          '50%': { boxShadow: '0 0 30px rgba(201, 162, 39, 0.5)' },
+          '0%, 100%': {boxShadow: '0 0 20px rgba(201, 162, 39, 0.3)'},
+          '50%': {boxShadow: '0 0 30px rgba(201, 162, 39, 0.5)'},
         },
       },
     },

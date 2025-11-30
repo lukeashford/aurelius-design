@@ -34,8 +34,8 @@
   --color-info-muted: #0369a1;
 
   /* === TYPOGRAPHY === */
-  --font-heading: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-  --font-body: 'Inter', 'SF Pro Text', system-ui, sans-serif;
+  --font-heading: 'Marcellus', serif;
+  --font-body: 'Raleway', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
 
   /* === SHADOWS === */

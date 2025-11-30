@@ -1,4 +1,7 @@
 @import './variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,10 +11,8 @@
 
 @layer base {
   /* Import fonts */
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
   html {
-    font-family: var(--font-body);
+    font-family: var(--font-body), serif;
     background-color: var(--color-obsidian);
     color: var(--color-white);
     -webkit-font-smoothing: antialiased;
@@ -23,24 +24,88 @@
     line-height: 1.5;
   }
 
-  /* Headings use Jakarta Sans */
+  /* Tables: thin gold borders, squared corners, subtle hover glow */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table, th, td {
+    border: 1px solid var(--color-gold);
+  }
+
+  th, td {
+    padding: 0.5rem 0.75rem;
+  }
+
+  table:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Progress bars: squared, thin gold border */
+  progress {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--color-gold);
+    border-radius: 0;
+    background-color: var(--color-charcoal);
+    width: 100%;
+    height: 0.5rem;
+  }
+
+  progress::-webkit-progress-bar {
+    background-color: var(--color-charcoal);
+  }
+
+  progress::-webkit-progress-value {
+    background-color: var(--color-gold);
+  }
+
+  progress::-moz-progress-bar {
+    background-color: var(--color-gold);
+  }
+
+  /* Headings use Marcellus */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: var(--font-heading), serif;
     font-weight: 600;
     letter-spacing: -0.025em;
     color: var(--color-white);
   }
 
-  h1 { font-size: 2.25rem; line-height: 1.25; }
-  h2 { font-size: 1.875rem; line-height: 1.25; }
-  h3 { font-size: 1.5rem; line-height: 1.375; }
-  h4 { font-size: 1.25rem; line-height: 1.375; }
-  h5 { font-size: 1.125rem; line-height: 1.5; }
-  h6 { font-size: 1rem; line-height: 1.5; }
+  h1 {
+    font-size: 2.25rem;
+    line-height: 1.25;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.375;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.375;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  h6 {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 
   /* Code uses JetBrains Mono */
   code, pre, kbd, samp {
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), serif;
     font-size: 0.875em;
   }
 
@@ -93,19 +158,19 @@
   /* Button base */
   .btn {
     @apply inline-flex items-center justify-center font-semibold tracking-wide
-           transition-all duration-[150ms] ease-out
-           disabled:opacity-50 disabled:cursor-not-allowed;
+    transition-all duration-[150ms] ease-out border border-gold rounded-none hover:shadow-glow
+    disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .btn-primary {
     @apply bg-gold text-obsidian hover:bg-gold-light active:bg-gold-bright
-           focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2
-           focus-visible:ring-offset-obsidian;
+    focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2
+    focus-visible:ring-offset-obsidian;
   }
 
   .btn-secondary {
     @apply bg-transparent border border-gold text-gold
-           hover:bg-gold/10 active:bg-gold/20;
+    hover:bg-gold/10 active:bg-gold/20;
   }
 
   .btn-ghost {
@@ -114,22 +179,33 @@
 
   .btn-danger {
     @apply bg-error text-white hover:bg-error/90 active:bg-error/80
-           focus-visible:ring-2 focus-visible:ring-error focus-visible:ring-offset-2
-           focus-visible:ring-offset-obsidian;
+    focus-visible:ring-2 focus-visible:ring-error focus-visible:ring-offset-2
+    focus-visible:ring-offset-obsidian;
   }
 
-  .btn-sm { @apply h-8 px-3 text-sm rounded-md; }
-  .btn-md { @apply h-10 px-4 text-sm rounded-md; }
-  .btn-lg { @apply h-12 px-6 text-base rounded-md; }
-  .btn-xl { @apply h-14 px-8 text-lg rounded-lg; }
+  .btn-sm {
+    @apply h-8 px-3 text-sm rounded-none;
+  }
+
+  .btn-md {
+    @apply h-10 px-4 text-sm rounded-none;
+  }
+
+  .btn-lg {
+    @apply h-12 px-6 text-base rounded-none;
+  }
+
+  .btn-xl {
+    @apply h-14 px-8 text-lg rounded-none;
+  }
 
   /* Input base */
   .input {
-    @apply w-full h-10 px-3 bg-graphite border border-ash rounded-md
-           text-white placeholder:text-zinc
-           transition-all duration-[150ms] ease-out
-           focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none
-           disabled:bg-slate disabled:text-dim disabled:cursor-not-allowed;
+    @apply w-full h-10 px-3 bg-graphite border border-ash rounded-none
+    text-white placeholder:text-zinc
+    transition-all duration-[150ms] ease-out
+    focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none
+    disabled:bg-slate disabled:text-dim disabled:cursor-not-allowed;
   }
 
   .input-error {
@@ -138,11 +214,11 @@
 
   /* Textarea */
   .textarea {
-    @apply w-full px-3 py-2 bg-graphite border border-ash rounded-md
-           text-white placeholder:text-zinc min-h-[80px]
-           transition-all duration-[150ms] ease-out
-           focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none
-           disabled:bg-slate disabled:text-dim disabled:cursor-not-allowed;
+    @apply w-full px-3 py-2 bg-graphite border border-ash rounded-none
+    text-white placeholder:text-zinc min-h-[80px]
+    transition-all duration-[150ms] ease-out
+    focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none
+    disabled:bg-slate disabled:text-dim disabled:cursor-not-allowed;
   }
 
   .textarea-error {
@@ -151,7 +227,7 @@
 
   /* Card base */
   .card {
-    @apply bg-charcoal rounded-xl p-6 shadow-sm;
+    @apply bg-charcoal rounded-none p-6 shadow-sm border border-gold hover:shadow-glow;
   }
 
   .card-elevated {
@@ -168,14 +244,14 @@
 
   .card-interactive {
     @apply transition-all duration-[200ms]
-           hover:border-slate hover:shadow-md
-           cursor-pointer;
+    hover:border-gold-light hover:shadow-glow
+    cursor-pointer;
   }
 
   /* Badge base */
   .badge {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full
-           text-xs font-medium border;
+    text-xs font-medium border;
   }
 
   .badge-default {
@@ -205,24 +281,41 @@
   /* Avatar base */
   .avatar {
     @apply inline-flex items-center justify-center
-           rounded-full border-2 border-ash
-           bg-slate text-silver font-semibold
-           overflow-hidden;
+    rounded-full border-2 border-ash
+    bg-slate text-silver font-semibold
+    overflow-hidden;
   }
 
-  .avatar-xs { @apply w-6 h-6 text-xs; }
-  .avatar-sm { @apply w-8 h-8 text-sm; }
-  .avatar-md { @apply w-10 h-10 text-base; }
-  .avatar-lg { @apply w-12 h-12 text-lg; }
-  .avatar-xl { @apply w-16 h-16 text-xl; }
-  .avatar-2xl { @apply w-24 h-24 text-2xl; }
+  .avatar-xs {
+    @apply w-6 h-6 text-xs;
+  }
+
+  .avatar-sm {
+    @apply w-8 h-8 text-sm;
+  }
+
+  .avatar-md {
+    @apply w-10 h-10 text-base;
+  }
+
+  .avatar-lg {
+    @apply w-12 h-12 text-lg;
+  }
+
+  .avatar-xl {
+    @apply w-16 h-16 text-xl;
+  }
+
+  .avatar-2xl {
+    @apply w-24 h-24 text-2xl;
+  }
 
   /* Tooltip */
   .tooltip {
     @apply absolute z-50 px-3 py-1.5
-           bg-graphite text-white text-sm
-           rounded-md shadow-lg border border-ash
-           pointer-events-none;
+    bg-graphite text-white text-sm
+    rounded-md shadow-lg border border-ash
+    pointer-events-none;
   }
 
   /* Divider */
@@ -251,7 +344,7 @@
   /* Gold gradient text */
   .text-gradient-gold {
     @apply bg-gradient-to-r from-gold via-gold-light to-gold
-           bg-clip-text text-transparent;
+    bg-clip-text text-transparent;
   }
 
   /* Glow effects */
@@ -291,8 +384,8 @@
   /* Focus ring utilities */
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2
-           focus-visible:ring-gold focus-visible:ring-offset-2
-           focus-visible:ring-offset-obsidian;
+    focus-visible:ring-gold focus-visible:ring-offset-2
+    focus-visible:ring-offset-obsidian;
   }
 
   /* Truncate text */

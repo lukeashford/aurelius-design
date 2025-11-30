@@ -16,5 +16,8 @@ export { colors, type ColorToken } from './tokens/colors'
 export { typography, type TypographyToken } from './tokens/typography'
 export { spacing, type SpacingToken } from './tokens/spacing'
 
+// React components
+export * from './components'
+
 // Version
 export const version = '1.0.0'
